@@ -163,3 +163,6 @@ eval `gdircolors -b ~/Documents/3tech/appearance/dircolors`
 
 # To customize prompt, run `p10k configure` or edit $ZSH/.p10k.zsh.
 [[ ! -f $ZSH_CUSTOM/.p10k.zsh ]] || source $ZSH_CUSTOM/.p10k.zsh
+
+# 2026-02-04 to use trash-cli, instead of mac-specific "trash", so as to use "recycle-bin" yazi plugin
+export PATH="/usr/local/opt/trash-cli/bin:$PATH"
