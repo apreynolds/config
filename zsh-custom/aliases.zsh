@@ -48,10 +48,10 @@ alias rs='rm -rf ~/.vim/swap/*'
 alias vs='vim -S ~/.vim/sessions/'
 
 #mytips alias (mt for short); <space> will display files in the mytips/ directory.
-alias mytips_text='bat ~/Documents/3computer/mytips/'
-alias mtt='bat ~/Documents/3computer/mytips/'
-alias mytips_open='open ~/Documents/3computer/mytips/'
-alias mto='open ~//3omputer/mytips/'
+alias mytips_text='bat ~/Documents/3tech/mytips/'
+alias mtt='bat ~/Documents/3tech/mytips/'
+alias mytips_open='open ~/Documents/3tech/mytips/'
+alias mto='open ~//3tech/mytips/'
 
 #vd-other script:
 alias vo='vd-other'
