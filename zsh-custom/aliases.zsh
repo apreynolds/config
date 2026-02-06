@@ -11,8 +11,6 @@
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias go='tmux-launch'
-alias stop='tmux kill-server' 
 alias zr='omz reload'
 
 #alias copycubaseprefs='rsync -av /Users/preynol1/Library/Preferences/Cubase\ 12/ /Volumes/MUSIC-MAIN/Settings_Cubase/Preferences_Cubase12_iMac/'
