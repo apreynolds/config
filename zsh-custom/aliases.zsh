@@ -40,8 +40,6 @@ alias fd='fd --no-ignore'
 #alias fh='fd --type f --no-ignore --hidden . $HOME | fzf | xargs -0  open'
 #alias fh='fd --type f --no-ignore --hidden . $HOME | fzf | sed "s/ /\\\\ /g" | xargs open'
 
-#alias rr='ranger'
-#alias manranger='open https://ranger.github.io/ranger.1.html'
 
 #vim
 alias rs='rm -rf ~/.vim/swap/*'
