@@ -21,7 +21,6 @@ alias zr='omz reload'
 alias maple='/Library/Frameworks/Maple.framework/Versions/2022/bin/maple'
 alias pdfexpert='/Applications/PDF\ Expert.app/Contents/MacOS/PDF\ Expert'
 
-
 alias ls='eza --group-directories-first'
 alias lt='ls --tree'
 
@@ -59,6 +58,5 @@ alias cgpt='web_search chatgpt'
 alias redd='web_search reddit'
 alias yt='web_search youtube'
 
-alias mypwgen='pwgen -y -c -n 16 1'
 
 
