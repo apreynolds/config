@@ -41,6 +41,7 @@ alias fd='fd --no-ignore'
 #vim
 alias rs='rm -rf ~/.vim/swap/*'
 alias vs='vim -S ~/.vim/sessions/'
+alias vt='vim ~/Documents/todo/todo.txt'
 
 #mytips alias (mt for short); <space> will display files in the mytips/ directory.
 alias mytips_text='bat ~/Documents/3tech/mytips/'
