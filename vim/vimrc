@@ -186,7 +186,8 @@ Plug 'nanotee/zoxide.vim'
 Plug 'preservim/vim-markdown'
 Plug 'AndrewRadev/bufferize.vim'
 Plug 'kshenoy/vim-signature' "for marks
-Plug 'Tarmean/fzf-session.vim' "replaces dominickng/fzf-session.vim
+Plug 'Tarmean/fzf-session.vim' "replaces dominickng/fzf-session.vim; even so, it
+" hasn't been updated since 2016; see note below
 Plug 'yukimura1227/vim-yazi'
 call plug#end()
 
@@ -520,15 +521,28 @@ nnoremap <leader>wo :Wipeout<CR>
 "want, namely: - Unload the current session and wipeout all the hidden buffers
 "- Load a new session (fuzzy)
 
-map <leader>oo :Obsession ~/.vim/sessions/
+" fzf-session.vim by default sets g:session_dir to .vim/sessions, but I've
+" modified the fzf-session.vim/autoload/session.vim to allow it to be set
+" here. In particular I wrapped the variable declaration in an if statement:
+" if !exists('g:session_dir')
+  " let g:session_dir = expand('~/.vim/sessions/')
+" endif
+" Thus I can define the variable here:
+let g:session_dir = expand('~/Documents/shared-settings/vim-sessions/')
+
+" I tried, unsuccessfully, to use g:session_dir in the following command (but
+" did manage to use it in the s1, s3 keymaps defined below):
+map <leader>oo :Obsession ~/Documents/shared-settings/vim-sessions/
 map <leader>os :echo ObsessionStatus()<cr>
+
+" Here I'll define maps to open wiki sessions, using the g:session_dir variable
+" defined above:
+map <leader>s1 :execute "source " . g:session_dir . "mathwiki.vim"
+map <leader>s3 :execute "source " . g:session_dir . "compwiki.vim"
 
 map <leader>sl :SessionLoad<cr>
 map <leader>ss :call SessUnloadWipeoutLoad()<cr>
 map <leader>su :call SessUnloadWipeout()<cr>
-
-map <leader>s1 :source ~/.vim/sessions/mathwiki.vim<cr>
-map <leader>s3 :source ~/.vim/sessions/techwiki.vim<cr>
 
 "Custom function to unload, wipeout:
 function! SessUnloadWipeout()
