@@ -11,7 +11,7 @@ vim/doc/*
 !vim/doc/myvim.help.txt
 
 vim/plugged/
-vim/sessions/
+vim/sessions
 vim/viminfo
 
 # No need to track yazi/flavors, but I *do* wish to track gruvbox-custom
