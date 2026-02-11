@@ -44,4 +44,4 @@ export BAT_THEME="gruvbox-dark"
 eval `gdircolors -b $XDG_CONFIG_HOME/dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-export _ZO_DATA_DIR="$XDG_CONFIG_HOME/zoxide"
+export _ZO_DATA_DIR="$HOME/Documents/shared-settings/zoxide"
