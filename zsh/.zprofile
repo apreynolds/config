@@ -13,7 +13,7 @@ export EDITOR=vim
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Include ~/Documents/3comp/bin, and .local/bin, in $PATH:
-export PATH=$HOME/Documents/3comp/bash:$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
