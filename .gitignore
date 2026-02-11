@@ -1,6 +1,3 @@
-# No need to track Alfred snippets:
-Alfred/
-
 # No need to track oh-my-zsh, but I *do* wish to track custom/aliases.zsh, so
 # I've placed it in zsh/ and symlinked to it from oh-my-zsh/custom (a little
 # janky, but I didn't have any luck setting up an exception like
@@ -22,8 +19,11 @@ yazi/flavors/*
 !yazi/flavors/gruvbox-custom.yazi
 
 yazi/plugins/
-zoxide/
 zsh/.zsh_sessions
 zsh/.zsh_history
 
 .DS_Store
+
+iterm2/
+Roland Cloud/
+Steinberg Installation Updater/
