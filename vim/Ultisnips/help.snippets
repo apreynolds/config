@@ -1,0 +1,74 @@
+# Snippets for VIM Help Files
+
+priority -50
+
+global !p
+def sec_title(snip, t):
+	file_start = snip.fn.split('.')[0]
+	sec_name = t[1].strip("1234567890. ").lower().replace(' ', '-')
+	return ("*%s-%s*" % (file_start, sec_name)).rjust(78-len(t[1]))
+def sec_title_link(snip, t):
+	file_start = snip.fn.split('.')[0]
+	sec_name = t[1].strip("1234567890. ").lower().replace(' ', '-')
+	return ("|%s-%s|" % (file_start, sec_name))
+endglobal
+
+snippet ` "code" i
+\`${1:${VISUAL}}\`
+endsnippet
+
+snippet toc1 "toc section" b
+    `!p snip.rv = sec_title_link(snip, t)` -- $1 
+$0
+endsnippet
+
+snippet toc2 "toc subsection" b
+       `!p snip.rv = sec_title_link(snip, t)` -- $1 
+$0
+endsnippet
+
+snippet sec "Section marker" b
+\`{{{ $1\`
+    `!p snip.rv = sec_title_link(snip, t)` -- $1 
+==============================================================================
+${1:SECTION}`!p snip.rv = sec_title(snip, t)`
+
+$0
+\`}}}\`
+endsnippet
+
+snippet ssec "Sub section marker" b
+\`{{{ $1\`
+       `!p snip.rv = sec_title_link(snip, t)` -- $1 
+------------------------------------------------------------------------------
+${1:Subsection}`!p snip.rv = sec_title(snip, t)`
+
+$0
+\`}}}\`
+endsnippet
+
+#snippet toc2 "Sub section marker" b
+#${1:Subsection}`!p -- snip.rv = sec_title(snip, t)`
+#
+#$0
+#endsnippet
+
+#snippet sseco "Sub section marker original" b
+#${1:Subsection}`!p snip.rv = sec_title(snip, t)
+#snip += "-"*len(t[1])`
+#
+#$0
+#endsnippet
+
+snippet sssec "Subsub Section marker" b
+${1:SubSubsection}:`!p snip.rv = sec_title(snip, t)`
+
+$0
+endsnippet
+
+# For vim help, follow the same settings as the official docs.
+snippet modeline "Vim help modeline"
+ `!v 'vim'`:tw=78:ts=8:ft=help:norl:
+endsnippet
+
+# vim:ft=snippets:

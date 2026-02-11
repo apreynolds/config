@@ -1,0 +1,9 @@
+gui:
+  nerdFontsVersion: "3"
+
+keybinding:
+  universal:
+    prevTab: "9"
+    nextTab: "0"
+    focusMainView: '['
+

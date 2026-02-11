@@ -1,0 +1,45 @@
+priority 0
+
+snippet th "threshold date" i
+t:`!v strftime("%Y")`-${1:`!v strftime("%m")`}-${2:`!v strftime("%d")`}
+endsnippet
+
+snippet due "due date" i
+due:`!v strftime("%Y")`-${1:`!v strftime("%m")`}-${2:`!v strftime("%d")`}
+endsnippet
+
+snippet 1 "1003" b
+(B) [${3:n}x] ${1:task} @1003 ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet 2 "2203" b
+(B) [${3:n}x] ${1:task} @2203 ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet 3 "3503" b
+(B) [${3:n}x] ${1:task} @3503 ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet a "advising" b
+(B) [${3:n}x] ${1:task} @advising ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet e "sci-entrance" b
+(B) [${3:n}x] ${1:task} @sci-entrance ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet w "work" b
+(B) [${3:n}x] ${1:task} @work ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet s "sci1001" b
+(B) [${3:n}x] ${1:task} @sci1001 ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet c "camp" b
+(B) [${3:n}x] ${1:task} @camp ${2:project} due:${4:`!v strftime("%Y")`}-${5:`!v strftime("%m")`}-${6:`!v strftime("%d")`}
+endsnippet
+
+snippet h "household" b
+${1:task} @household ${2:project}
+endsnippet

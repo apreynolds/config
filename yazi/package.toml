@@ -1,0 +1,59 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "230b9c6"
+hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "230b9c6"
+hash = "270915fa8282a19908449530ff66f7e2"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "230b9c6"
+hash = "407d19bc4fb46eff5fa8ff8337644847"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "230b9c6"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "230b9c6"
+hash = "75fd60b2df7115e0a6ca31a6a804d320"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "230b9c6"
+hash = "25aee698dd1081001008ce0cb1cc4da3"
+
+[[plugin.deps]]
+use = "peterfication/mux"
+rev = "e76edd5"
+hash = "8e49c6f9b24993239c4d03a1aaabce80"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "dc61636"
+hash = "2fa34959353b6f1a1c33659f50e098fd"
+
+[[plugin.deps]]
+use = "barbanevosa/autosession"
+rev = "cbdde95"
+hash = "bd7b86e05fa0ffae4e0410b1b6135c4a"
+
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "fa68711"
+hash = "8714306b5cac6359edbacbf545fbd691"
+
+[[flavor.deps]]
+use = "matt-dong-123/gruvbox-material"
+rev = "6c36491"
+hash = "564f2335540ee2c440c3b671bc28ac60"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "28e1977"
+hash = "bc4620db89cf55bd91906c239f8fa1a8"

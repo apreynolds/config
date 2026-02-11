@@ -1,0 +1,402 @@
+#contents----------------------------------------------------
+#-  vimwiki snippets (including some html and tex) 
+#----------------------------------------------------
+
+#<<< C "CONCERN"
+snippet C "CONCERN" i
+CONCERN 
+endsnippet
+#>>> 
+#<<< D "DONE"
+snippet D "DONE" i
+DONE 
+endsnippet
+#>>> 
+#<<< I "INFO"
+snippet I "INFO" i
+INFO 
+endsnippet
+#>>> 
+#<<< F "FIXED"
+snippet F "FIXED" i
+FIXED 
+endsnippet
+#>>> 
+#<<< H "HOWTO"
+snippet H "HOWTO" i
+HOWTO 
+endsnippet
+#>>> 
+#<<< N "NOTE"
+snippet N "NOTE" i
+NOTE 
+endsnippet
+#>>> 
+#<<< O "OPINION"
+snippet O "OPINION" i
+OPINION
+endsnippet
+#>>> 
+#<<< Q "QUESTION"
+snippet Q "QUESTION" i
+QUESTION 
+endsnippet
+#>>> 
+#<<< R "RESOURCE"
+snippet R "RESOURCE" i
+RESOURCE 
+endsnippet
+#>>> 
+#<<< S "SUMMARY"
+snippet S "SUMMARY" i
+SUMMARY 
+endsnippet
+#>>> 
+#<<< T "TODO"
+snippet T "TODO" i
+TODO 
+endsnippet
+#>>> 
+#<<< U "UPDATE"
+snippet U "UPDATE" i
+UPDATE 
+endsnippet
+#>>> 
+#<<< Z "ZTEMP"
+snippet Z "ZTEMP" i
+ZTEMP 
+endsnippet
+#>>> 
+snippet %% "comment" i
+%%+ $1 +%%
+endsnippet
+
+snippet meet "misc meeting" b
+[[vfile:meetings-misc/`!v strftime("%Y%m%d")`-${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:-:\L$1$2$3\E)/ga }}.tex|${1:project name}]]
+endsnippet
+
+snippet proj "new project" b
+[[projects/`!v strftime("%Y%m%d")`-${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:-:\L$1$2$3\E)/ga }}|$1]]
+%title $1
+%date
+
+= ${1:project name} =
+${3:tags}
+endsnippet
+
+
+#---------------------
+#-  Taking Notes  -
+#---------------------
+
+snippet sec "secion" b
+= ${1:title} =
+:${2:tag}:
+
+endsnippet
+
+snippet br "break" i
+<br>
+endsnippet
+
+snippet note "misc note" b
+== $1 ==
+:${2:tag} :${3:tag}    <br>
+$4 
+endsnippet
+
+#---------------------
+#-  General vimwiki  -
+#---------------------
+
+snippet wp "wikipage" b
+%title $1
+%date
+
+= ${1:title} =
+${2:tags}
+endsnippet
+
+snippet dt "diary page title" b
+= ${1:title} =
+${3:tags} %%+ $1, $2 
++%%
+
+endsnippet
+
+snippet wsp "wiki shortpage " b
+%title ${1:title}
+%template shortpage_template
+%date
+
+= $1 =
+${2:tags}
+
+endsnippet
+
+snippet wmp "wiki music page" b
+%title ${1:title}
+%date
+
+= $1 ($2) =
+
+[[vfile:Songsheet-$1.tex|(tex)]] [[local:Songsheet-$1.pdf|$1]] 
+endsnippet
+
+snippet osongpage "a" b
+[[Written/${1:date}-$2/$2|$2 ($1)]]<br>
+endsnippet
+
+snippet ` "code" i
+\`${1:${VISUAL:contents}}\`$0
+endsnippet
+
+snippet ( "parentheses" i
+(${1:${VISUAL:contents}})$0
+endsnippet
+
+snippet _ "emph" i
+_${1:${VISUAL:contents}}_$0
+endsnippet
+
+snippet * "bold" i
+*${1:${VISUAL:contents}}*$0
+endsnippet
+
+snippet ~ "bold" i
+~~${1:${VISUAL:contents}}~~$0
+endsnippet
+
+snippet lect "lecture notes" i
+[[local:lectures/$1a.pdf|$1]]
+endsnippet
+
+snippet local "local" 
+[[local:$1|$1]]
+endsnippet
+
+snippet vfile "vfile" 
+[[vfile:$1|$1]]
+endsnippet
+
+snippet img "image" 
+{{local:$1|${2:text}|class="center", width=${3:"90%"}}}
+endsnippet
+
+snippet texpdf "tex and pdf file" 
+[[vfile:$1.tex|$1 (tex)]]; [[vfile:$1.pdf|$1 (pdf)]]
+endsnippet
+
+snippet [[ "link" 
+[[$1|$2]]
+endsnippet
+
+snippet tag "tag" b
+%tag @
+endsnippet
+
+snippet title "title" b
+%title 
+endsnippet
+
+snippet wq "wiki question" i
+QUESTION: (`!v strftime("%F")`)
+endsnippet
+
+snippet wu "wiki update" i
+UPDATE: (`!v strftime("%F")`)
+endsnippet
+
+snippet wa "wiki answer" i
+ANSWER: (`!v strftime("%F")`)
+endsnippet
+
+snippet mpl "maple file" b
+[[vfile:grfx/`!v strftime("%F")`.mpl|`!v strftime("%F")`]]
+{{local:grfx/`!v strftime("%F")`.png|`!v strftime("%F")`|style="width:100px;"}}
+endsnippet
+
+snippet mplr "maple resource div" b
+<div class="resource">
+{{local:grfx/`!v strftime("%F")`.png}}
+[[vfile:grfx/`!v strftime("%F")`.mpl|`!v strftime("%F")`]]
+${4:blurb}
+</div>
+endsnippet
+#----------
+#-  html  -
+#----------
+
+snippet desmos "desmos resource div" b
+<div class="resource">
+${1:copy html embed code here, then run @d macro}
+${2:blurb}
+</div>
+endsnippet
+
+snippet sagersrc "sage resource div" b
+<div class="resource">
+{{local:sage/${1:imagefile}}}
+[[sage/${2:file}|${3:description}]] 
+${4:blurb}
+</div>
+endsnippet
+
+snippet resource "resource div" b
+<div class="resource">
+{{local:${1:imagefile}}}
+[[local:${2:file}|${3:description}]] 
+${4:blurb}
+</div>
+endsnippet
+
+snippet blue "blue span" 
+<span class="blue"> $1 </span>
+endsnippet
+
+snippet red "red span" 
+<span class="red"> $1 </span>
+endsnippet
+
+snippet orange "red span" 
+<span class="red"> $1 </span>
+endsnippet
+
+
+snippet green "green span" 
+<span class="green"> $1 </span>
+endsnippet
+
+snippet purple "purple span" 
+<span class="purple"> $1 </span>
+endsnippet
+
+snippet span "span general" 
+<span class="$1"> $2 </span>
+endsnippet
+
+snippet divt "div titlelinks" b
+<div class="${1:titlelinks}">
+$2
+</div>
+endsnippet
+
+snippet div "general div" b
+<${1:div} class="${2:class}">
+$3
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet geog "geogebra" b
+%%$1
+{{#
+</div>
+<div class="sagework">
+`!p snip.rv = t[1].replace('1304','1200')`
+</div>
+<div class="content">
+}}#
+
+endsnippet
+
+snippet vid "video" b
+%%$1
+{{#
+<div class="vid-container">
+<iframe width="xxx" height="xxx" src="`!p snip.rv = t[1].replace('watch?v=','embed/')`" frameborder="0" allowfullscreen></iframe>
+</div>
+}}#
+
+endsnippet
+
+snippet audio "audio" b
+{{#
+<audio controls>
+  <source src="$1" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+}}#
+
+endsnippet
+#------------------
+#-  Course admin  -
+#------------------
+
+snippet wpu "workbook problems updated" b
+<span class="red"> *`!v strftime("%a %d %b")`:* </span> [[assessment#Workbook Problems|Workbook problems]] updated.
+endsnippet
+
+snippet lnp "lecture notes posted" i
+$1 [[resources#Classes|class notes]] are posted.
+endsnippet
+
+snippet qsp "quiz solutions posted" i
+[[assessment#Quizzes|Quiz $1 solutions]]  are posted.
+endsnippet
+
+snippet row "add table row"
+| [[local:coursenotes/$1.html|$1]] |  | [[local:lectures/$1a.pdf|$1]] |  | $2 |
+%% Look at [[local:coursenotes/$1.html|these notes]]. $2
+endsnippet
+
+snippet rtoday
+<span class="red"> *`!v strftime("%a %d %b")`:* </span>
+endsnippet
+
+snippet btoday
+*`!v strftime("%a %d %b")`:*
+endsnippet
+
+snippet ncm "next monday's class" b
+<span class="green"> *MONDAY'S CLASS (${1:May} $2):* </span>
+$3
+
+endsnippet
+
+snippet ncw "next wednesday's class" b
+<span class="green"> *WEDNESDAY'S CLASS (${1:May} $2):* </span>
+$3
+
+endsnippet
+
+snippet ncf "next friday's class" b
+<span class="green"> *FRIDAY'S CLASS (${1:Jan} $2):* </span>
+$3
+
+endsnippet
+
+snippet sol "solutions" b
+[[local:assessment/${1/(.).*/\l$1/}$2sol.pdf|${1:Quiz} $2 solutions]]
+
+endsnippet
+
+snippet asst "assignment" b
+[[local:assessment/${1/(.).*/\l$1/}$2.pdf|${1:Assignment} $2]] (due $3 at start of class)
+%%[[local:assessment/${1/(.).*/\l$1/}$2sol.pdf|solutions]]
+
+endsnippet
+
+snippet spost
+*`!v strftime("%a %d %b")`* Solutions to $1 are now [[local:assessment.html#Assessment-`!p snip.rv = t[1].replace('z','zze').split(' ',1)[0]`s|posted]].
+endsnippet
+
+#------------------------------
+#-  Unused but maybe helpful  -
+#------------------------------
+
+#Other attempts 2015-07-28
+#snippet spost
+#*`!v strftime("%a %d %b")`* Solutions to  ${1:Assignment} $2 are now [[assessment#Assessment-$1s|posted]] [[assessment#${1/\w+\s*/\l$0/g}$3|posted]].
+#endsnippet
+
+#snippet spost
+#*`!v strftime("%a %d %b")`* Solutions to  ${1:Assignment} $2 are now [[local:assessment#Assessment-`!p snip.rv = t[1].replace('z','zze')`s|posted]].
+#endsnippet
+
+#snippet spost
+#*`!v strftime("%a %d %b")`* Solutions to  ${1:Assignment 1} are now [[local:assessment#Assessment-`!p snip.rv = t[1].split(' ', 1)[0]`s|posted]].
+#endsnippet
+
+#snippet spost
+#*`!v strftime("%a %d %b")`* Solutions to  ${1:Assignment} $2 are now [[local:assessment/${1/(.).*/\l$1/}$2sol.pdf|posted]].
+#endsnippet

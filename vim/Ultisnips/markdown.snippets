@@ -1,0 +1,175 @@
+priority -50
+
+
+snippet doc "Document" b
+% ${1:title}
+% ${2:subtitle}
+% ${3:date}
+
+---
+documentclass: article <!--or extarticle-->
+<!--pagestyle: plain-->
+header-includes: |
+    \usepackage[sf,bf]{titlesec}
+    \usepackage{titling}
+    \setlength{\droptitle}{-5em}
+    \pretitle{\huge\bfseries\sffamily}
+    \posttitle{\par\vskip 0.1em}
+    \preauthor{\Large\bfseries\sffamily}
+    \postauthor{\par\vskip 0.0em}
+    \predate{\itshape}
+    \postdate{\par\vskip 0.5em}
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyfoot[C]{\thepage}
+    <!--\pagenumbering{gobble}-->
+<!--geometry: margin=1.75in-->
+papersize: letter
+fontfamily: newtxtext
+<!--fontfamilyoptions: osf-->
+fontsize: 11pt
+colorlinks: true
+toc: true
+
+---
+
+$0
+endsnippet
+
+###########################
+# Sections and Paragraphs #
+###########################
+snippet sec "Section" b
+# ${1:${VISUAL:Section Name}}
+$0
+endsnippet
+
+snippet ssec "Sub Section" b
+## ${1:${VISUAL:Subsection Name}}
+$0
+endsnippet
+
+snippet sssec "SubSub Section" b
+### ${1:${VISUAL:Subsubsection Name}}
+$0
+endsnippet
+
+snippet par "Paragraph" b
+#### ${1:Paragraph Name}
+$0
+endsnippet
+
+snippet spar "Paragraph" b
+##### ${1:Paragraph Name} 
+$0
+endsnippet
+
+################
+# Common stuff #
+################
+snippet link "Link to something"
+[${1:${VISUAL:Text}}](${3:https://${2:www.cbc.ca}})$0
+endsnippet
+
+snippet url "Link to something"
+<${1:https://www.cbc.ca}>$0
+endsnippet
+
+snippet image "Image"
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+snippet ilc "Inline Code" i
+\`$1\`$0
+endsnippet
+
+snippet cbl "Codeblock" b
+\`\`\`
+$1
+\`\`\`
+$0
+endsnippet
+
+###################
+# Text formatting #
+###################
+
+snippet em "emph" i
+*${1:${VISUAL:contents}}*$0
+endsnippet
+
+snippet bf "bold" i
+**${1:${VISUAL:contents}}**$0
+endsnippet
+
+snippet so "strikeout" i
+~~${1:${VISUAL:contents}}~~$0
+endsnippet
+
+snippet ^ "superscript" i
+^${1:${VISUAL:contents}}^$0
+endsnippet
+
+snippet ~ "subscript" i
+~${1:${VISUAL:contents}}~$0
+endsnippet
+
+# Will be formatted as block quote: #
+snippet quote "quote" i
+>${1:${VISUAL:contents}} $0
+endsnippet
+
+# Will be formatted exactly as typed: #
+snippet verse "verse" i
+| ${1:${VISUAL:contents}} $0
+endsnippet
+
+########
+# Math #
+########
+
+snippet $ "inline math" i
+$${1:${VISUAL:contents}}$$0
+endsnippet
+
+snippet $d "display math" b
+$$${1:${VISUAL:contents}}$$$0
+endsnippet
+
+##########
+# Tables #
+##########
+
+snippet table "tables" b
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+$0
+endsnippet
+
+#########
+# Other #
+#########
+
+snippet footnote "footnote" i
+[^${1:${VISUAL:contents}}]$0
+endsnippet
+
+snippet line "line" i
+--------------------
+
+$0
+endsnippet
+
+snippet enclosed "enclosed, centered between lines" i
+--------------------
+${1:${VISUAL:contents}}
+--------------------
+
+$0
+endsnippet
+
+
+# vim:ft=snippets:

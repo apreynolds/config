@@ -1,0 +1,29 @@
+# No need to track Alfred snippets:
+Alfred/
+
+# No need to track oh-my-zsh, but I *do* wish to track custom/aliases.zsh, so
+# I've placed it in zsh/ and symlinked to it from oh-my-zsh/custom (a little
+# janky, but I didn't have any luck setting up an exception like
+# !oh-my-zsh/custom; lazygit threw up a strange error).
+oh-my-zsh/
+
+vim/autoload/
+
+# No need to track vim/doc, but I *do* wish to track myvim.help.txt
+vim/doc/*
+!vim/doc/myvim.help.txt
+
+vim/plugged/
+vim/sessions/
+vim/viminfo
+
+# No need to track yazi/flavors, but I *do* wish to track gruvbox-custom
+yazi/flavors/*
+!yazi/flavors/gruvbox-custom.yazi
+
+yazi/plugins/
+zoxide/
+zsh/.zsh_sessions
+zsh/.zsh_history
+
+.DS_Store

@@ -1,0 +1,11 @@
+snippet epsset "plotsetup (eps)" b
+plotsetup(eps,plotoutput="`!p snip.rv = snip.basename`$1.eps",plotoptions="portrait,noborder,color"):
+endsnippet
+
+snippet epssetl "plot setup (linux)" b
+plotsetup(eps,plotoutput="`!p snip.rv = snip.basename`.eps"):
+endsnippet
+
+snippet gifsetup "Description" b
+plotsetup(gif,plotoutput="`!p snip.rv = snip.basename`.gif"):
+endsnippet

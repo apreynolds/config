@@ -1,0 +1,1269 @@
+#priority -50
+# vim:ft=snippets:
+#NOTE: to visually select and then apply snippet, use: ${1:${VISUAL}}
+#tem
+#---------------------------
+#<<< PREAMBLE
+#---------------------------
+#<<< pac "Package" b
+snippet pac "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet
+#>>>
+#<<< titlesec "Title section basics" b
+snippet titlesec "Title section basics" b
+\usepackage{titlesec}
+%usage: titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
+\titleformat{\section}{\Large\centering\normalfont\scshape}{\thesection}{1em}{}
+%usage: \titlespacing*{command}{left}{before-sep}{after-sep}[right-sep]
+\titlespacing*{\section}{0em}{2em}{1em}[0em]
+endsnippet
+#>>>
+#---------------------------
+#>>> END PREAMBLE
+#---------------------------
+#<<< FONTS 
+#---------------------------
+#<<< fontsxelatex "xelatex" b
+snippet fontsxelatex "xelatex" b
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FONT SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{iftex} %for checking, in pariicular, pdflatex or xelatex compilation
+\ifxetex
+  \usepackage{fontspec} % For use with xelatex; uses systems fonts 
+  \setmainfont{EBGaramond-Regular}[
+    BoldFont = EBGaramond-Bold,
+    ItalicFont = EBGaramond-Italic,
+    BoldItalicFont = EBGaramond-BoldItalic
+  ]
+  %\setsansfont{font}
+  \setmonofont{Inconsolatazi4}
+  %\newfontfamily<cmd>{font}
+\else
+
+  ${1:%CHOOSE backup FONT; see snippets}
+
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+endsnippet
+#>>>
+#<<< fontsmath "fontsetup" b
+snippet fontsmath "fontsetup" b
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FONT SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+${1:\usepackage{amsthm} %amsmath, amsymb loaded by newtxmath by default; load before newtxtext if I want that package's theoremfont option}
+
+${2:%CHOOSE FONTS; see snippets and texfontoptions snippet}
+
+${3:\usepackage[scaled=1.0, cal=euler, frak=euler, frakscaled=0.9, bbscaled=1.05, scr=boondoxo]{mathalfa} %for specifying cal, frak, bb, script fonts; see documentation.
+\usepackage{bm} %load after all to give access to bold math.}
+
+\usepackage[tracking=true]{microtype} %see documentation for further options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+endsnippet
+#>>>
+#<<< sansmonooptions "sansmonooptions" b
+snippet sansmonooptions "sansmonooptions" b
+% THESE ARE JUST SOME See https://www.tug.org/FontCatalogue/ for more options
+%SANS
+\usepackage[scaled=0.95]{gillius} %Or gillius2. Nice with Garamond. Options: scaled, condensed.
+%\usepackage[defaultsans]{cantarell} %works well with garamond, baskerville
+%\usepackage[condensed]{cabin} 
+%\usepackage[defaultsans]{lato} 
+%\usepackage[thin]{FiraSans} %very thin
+%\usepackage[]{roboto} %nice with garamond
+%\usepackage{overlock} %kind of decorative
+%\usepackage[scaled=0.9]{helvet} %Nice with Times.
+%%%%\usepackage{arev} %outdated, causes too many fonts error 
+
+%MONO
+\usepackage[varqu,varl]{zi4}% inconsolata; teletype font; has bold style; no italic shape
+%\usepackage{libertineMono}% teletype font; has bold style, italic shape
+%\usepackage{cmtt}% teletype font; no bold style; has upright, italic, slanted shapes
+endsnippet
+#>>>
+#<<< fancyoptions "fancyoptions" b
+snippet fancyoptions "fancyoptions" b
+% THESE ARE JUST SOME See https://www.tug.org/FontCatalogue/ for more options
+%\usepackage{imfellEnglish}
+%\usepackage{bookman}
+%\usepackage{calligra}  %{\calligra} 
+%\usepackage{cinzel} %\cinzel, or \cinzelblack; has emph version 
+%\usepackage{aurical} %{\Fontauri}, or Fontskrivan, Fontlukas, Fontamici 
+%\usepackage{frcursive} %{\cursive}, frc 
+%\usepackage{miama} %\fmmfamily 
+endsnippet
+#>>>
+#<<< lettrine "Lettrine, for large first letters" b
+snippet lettrine "Lettrine, for large first letters" b
+\usepackage{lettrine} %USAGE with some options (other options available): \lettrine[lines=3,lhang=0.0,findent=0.5em,nindent=0.5em,slope=0em]{A}{optional small caps text}
+endsnippet
+#>>>
+#<<< fontsize "specify font size" i
+snippet fontsize "specify font size" i
+{\fontsize{${1:SIZE in e.g. cm}}{${2:BASELINESKIP (best: 1.2xSIZE)}}\selectfont 
+${3:TEXT}\par
+}
+endsnippet
+#>>>
+#<<< initial "Fancy initial letters" b
+snippet initial "Fancy initial letters" b
+\input Typocaps.fd %other examples at https://www.tug.org/FontCatalogue/otherfonts.html
+\newcommand\init[2]{{\usefont{U}{Typocaps}{xl}{n} \fontsize{#1}{#1}\selectfont #2}} %usage: \init{9mm}{T}
+%some initial options: kramer, acorn, typocaps, annston, nouveaud, elzevier
+endsnippet
+#>>>
+#<<< selectfont "Select font" b
+snippet selectfont "Select font" b
+{\fontfamily{${1:familyname}}\selectfont ${2:text}}
+endsnippet
+#>>>
+# FONTS compatible with newtxmath; faves are garamondx, ebgaramond, baskervillef, cochineal; least faves are scholax, charter, times, utopia  {{{{{{{{{{
+#<<< newtxtext "times" b
+snippet newtxtext "times" b
+% Newtx: Family, times clone (ntxtosf), helvetica clone (qhv), and monospaced (ntxtt). Mono has bold style, and italic shape.
+\usepackage[scaled=1.0,osf]{newtxtext} %Options: osf gives oldstylefigures in text but not math; useosf no longer necessary; helvratio (default 0.9) defines scaling of sans relative to roman
+\usepackage[T1]{fontenc}
+\usepackage[scaled=1.0,cmbraces,varg,nosymbolsc]{newtxmath} %see documentation for varg or varvw; option nosymbolsc frees up a math font slot, but disables \Diamond, \Join, \leadsto; 
+endsnippet
+#>>>
+#<<< baskervald "baskervald" b
+snippet baskervald "baskervald" b
+\usepackage[osf]{Baskervaldx} 
+\usepackage[T1]{fontenc}
+\usepackage[baskervaldx,nosymbolsc,cmbraces]{newtxmath}  
+endsnippet
+#>>> 
+#<<< baskervillef "baskervillef" b
+snippet baskervillef "baskervillef" b
+\usepackage[p,osf,scale=1.0]{baskervillef} %Options: p, osf, spacing, stretch, shrink, swash?, sups, scosf, theoremfont; see package documentation
+\usepackage[T1]{fontenc}
+\usepackage[baskerville,scaled=1.0,cmbraces,nosymbolsc]{newtxmath} 
+endsnippet
+#>>>
+#<<< charter "charter" b
+snippet charter "charter" b
+%XCharter
+\usepackage[osf]{XCharter} %Options: osf, scosf, scaled; see package documentation
+\usepackage[T1]{fontenc}
+\usepackage[charter,scaled=1.0,cmbraces,alty,nosymbolsc]{newtxmath} 
+endsnippet
+#>>>
+#<<< cochineal "cochineal" b
+snippet cochineal "cochineal" b
+%Cochineal
+\usepackage[p,osf,swashQ]{cochineal} %OPTIONS: scaled, swashQ, proportional, scosf, theoremfont
+% OPTIONAL Sans 
+% OPTIONAL Mono
+\usepackage[T1]{fontenc}
+\usepackage[cochineal,scaled=1.0,nosymbolsc,cmbraces]{newtxmath} %Cochineal options: cochf replaces the default short math italic f with the long italic f used in text; similarly cochrho
+endsnippet
+#>>>
+#<<< garamondx "garamondx" b
+snippet garamondx "garamondx" b
+% Garamondx (nonfreefonts). Allows for oldstyle figures in text but not math.
+\usepackage[osf]{garamondx} %Uses T1 encoding by default, no need to load separately. Options: scaled=x.x, osf, osfI (see package documentation), with commands \textlf{}, \textosf{}, \textosfI{}, and swashQ (also the command \swashQ is available). Loads fontaxes.
+% OPTIONAL Sans (gillius works)
+% REQUIRES? Mono
+\usepackage[garamondx,nosymbolsc,cmbraces]{newtxmath} %optiona varvw disabled; NOTE: scaled option with garamondx causes math mode to break during compilation. 
+endsnippet
+#>>>
+#<<< ebgaramond "ebgaramond" b
+snippet ebgaramond "ebgaramond" b
+% EBGaramond. 
+\usepackage[lining, semibold, scaled=1.05]{ebgaramond} %Options: oldstyle(default),lining,proportional (varying-width figures;default), tabular (fixed-width figures), with commands \oldstylenums{}, \liningnums{}, \tabularnums{}, \proportionalnums{} (NOTE: useosf not defined); medium, semibold, extrabold; scaled. SHAPES: it, sc, scit; slanted not supported.  Superior numbers (for footnote markers) are available using \sufigures or \textsu{...}. Inferior numbers (for subscripts) are available using \infigures or \textinf{...}.  Swash italic glyphs (for some letters) are available using \swshape or \textsw{...}.  Command \textin{...} produces decorative initials; currently only the following glyphs are available: A, D, F, G, L, N, O, Q, T and X.
+% OPTIONAL Sans (gillius works)
+% REQUIRES? Mono
+\usepackage[T1]{fontenc}
+\usepackage[ebgaramond,scaled=1.0,nosymbolsc,cmbraces]{newtxmath}
+endsnippet
+#>>>
+#<<< libertine "libertine" b
+snippet libertine "libertine" b
+% Libertine family: has roman (libertine), sans (biilinum), teletype (libertinemono), each of which can be loaded independently: \usepackage{libertineRoman}, or biolinum, or libertineMono. Has shapes it, sc, scit (\textsc{\emph{}}) in all family except mono which has only it
+\usepackage[sb,lining]{libertine} %Options: sb for semibold for roman, no effect on sans (very subtle, is it even working?), oldstyle (Note: will also affect math), lining (default), proportional, tabular (default) for figures, along with commands \oldstylenums{}, \oldstylenumsf{},\liningnums{}, \liningnumsf{}, scale (for biolinum), llscale (for libertine), ttscale (for mono)
+\usepackage[T1]{fontenc}
+\usepackage[libertine,scaled=1.0,nosymbolsc,cmbraces,libaltvw,liby]{newtxmath} %libertine option disables varvw
+\useosf  % for osf in normal text; load after math package
+endsnippet
+#>>>
+#<<< scholax "scholax" b
+snippet scholax "scholax" b
+%ScholaX
+\usepackage[p,osf]{scholax} %OPTIONS: osf, with commands \textosf{} etc; p(roportianal figures; default is tabular); scaled; theoremfont; stretch and shrink; blackboard bold macros
+% OPTIONAL Sans 
+% OPTIONAL Mono
+\usepackage[T1]{fontenc}
+\usepackage[nc,scaled=1.075,nosymbolsc,cmbraces]{newtxmath} %nc (uses newtx greek letters) or ncf (uses fourier greek letters) for use with scholax; scale math up for use with scholax
+endsnippet
+#>>>
+#<<< stix2 "stix2" b
+snippet stix2 "stix2" b
+\usepackage[p,osf]{stickstootext} %Options: osf, scosf, scaled, theoremfont; see package documentation
+\usepackage[T1]{fontenc}
+\usepackage[stix2,scaled=1.0,cmbraces,nosymbolsc]{newtxmath} 
+endsnippet
+#>>>
+#<<< utopia "utopia" b
+snippet utopia "utopia" b
+%Utopia (erewhon)
+\usepackage[proportional,scaled=1.0,loosest,osf]{erewhon} %options: see package documentation
+\usepackage[T1]{fontenc}
+\usepackage[erewhon,nosymbolsc,cmbraces]{newtxmath}
+endsnippet
+#>>>
+#---------------------------
+#>>> FONTS 
+#---------------------------
+
+#---------------------------
+#<<< DOC-TEMPLATES 
+#---------------------------
+#<<< demodoc "document" b
+snippet demodoc "document" b
+% !TeX program = pdflatex
+\documentclass[11pt]{article}
+\usepackage[]{geometry}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{amssymb,amsthm,amsmath}
+%\usepackage{graphicx}
+% Fakesection BLINDTEXT
+\usepackage[english]{babel}
+\usepackage[math]{blindtext}
+\newcommand{\quickbrownfox}{The quick brown fox jumped over the lazy dog.}
+\newcommand{\Quickbrownfox}{THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG.}
+
+% Fakesection FONTS
+\usepackage{libertinus}
+\usepackage[T1]{fontenc}
+
+% Fakesection LISTINGS:
+\usepackage[]{listings}
+\lstset{
+  language=[LaTeX]{TeX},
+  basicstyle=\ttfamily\small, %recommend \usepackage{scaled=0.88}{newtxtt}
+  breaklines=true,
+  breakatwhitespace=true,
+  postbreak={..},
+  frame=single,
+  rulecolor=\color{Gray!50}, %requires [dvipsnames]{xcolor}
+  backgroundcolor=\color{Gray!10}, %requires [dvipsnames]{xcolor}
+  xleftmargin=3pt,
+  xrightmargin=3pt
+}
+% Fakesubsection TCOLORBOX
+\usepackage[]{tcolorbox}
+\newtcolorbox{examplebox}{%
+  %colback=Gray!2, colframe=Gray, fonttitle=\sffamily\bfseries, title={#1}
+  colback=RoyalBlue!10, colframe=Gray, arc=0mm, outer arc=0mm, oversize, boxrule=0mm
+}
+
+
+% Fakesection HYPERREF
+%\usepackage{hyperref}
+
+% Fakesection FUZZ
+% NOTE that these can be set and re-set in the body of the document as well (for example, to avoid warning for particular objects)
+\hfuzz 2pt 
+\overfullrule 25pt
+\vfuzz 2pt
+\hbadness=500
+\vbadness=1000
+
+\begin{document}
+
+\noindent
+\textbf{\Large $1}
+
+$0
+
+\end{document}
+endsnippet
+#>>>
+#<<< basicdoc "document" b
+snippet basicdoc "document" b
+% !TeX program = pdflatex
+\documentclass[11pt]{article}
+% Fakesection BASIC PACKAGES
+\usepackage[]{parskip}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[inline]{enumitem}
+\usepackage{marginnote} 
+
+% Fakesection FONTS
+% Fakesubsection TYPEFACE SELECTIONS
+\let\CheckCommand\providecommand % https://tex.stackexchange.com/questions/511711/disable-microtype-warning
+\usepackage[tracking = true]{microtype} %makes pdflatex do cleaner typesetting; doesn't need to be loaded after font anymore.
+
+\usepackage[T1]{fontenc}
+
+% SERIF:
+\usepackage[
+semibold,
+lining,
+serif, %prevents loading sans serif
+tt=false %prevents loading mono
+]{libertinus} %libertinus-type1 
+
+% SANS:
+\usepackage[
+sf,
+sfoldstyle, % or sflining
+scaled=0.85
+]{merriweather} %scaled roughly halfway between matching lowercase x (0.8) and uppercase X (0.9)
+
+% TELETYPE:
+\usepackage[
+scale=0.96
+]{newtxtt}
+
+% Fakesubsection TYPEFACE-DEPENDENT STUFF:
+\newcommand{\course}[2][MATH]{%
+  {\sffamily #1 #2}%
+}
+\AtBeginEnvironment{tabular}{\LibertinusSerifTLF}
+\newcommand{\Myosf}[1]{{\LibertinusSerifOsF #1}}
+\newcommand{\Mylnums}[1]{{\LibertinusSerifTLF #1}}
+\useosf  % for osf in normal text; load after math package
+
+% Fakesection TITLESEC BASIC
+\usepackage[sf,clearempty]{titlesec}
+%\assignpagestyle{\chapter}{empty}
+%\setcounter{secnumdepth}{0}
+
+% Fakesection GEOMETRY
+\usepackage{geometry}
+\newlength{\alphabet} % Will be used to set textwidth
+\settowidth{\alphabet}{\normalfont abcdefghijklmnopqrstuvwxyz}
+%\geometry{showframe}
+\geometry{textwidth=2.6\alphabet}
+\geometry{head=15pt}
+%\geometry{twoside}
+\makeatletter
+\if@twoside
+  \geometry{hmarginratio={2:3}}
+\else
+  \geometry{hmarginratio={1:1}}
+\fi
+\makeatother
+\geometry{marginparwidth=0.7\dimexpr\paperwidth-1.0in-\hoffset-\oddsidemargin - \textwidth\relax}
+% Fakesection BLINDTEXT (OPTIONAL, delete if not required)
+\usepackage[english]{babel}
+\usepackage[math]{blindtext}
+\newcommand{\quickbrownfox}{The quick brown fox jumped over the lazy dog.}
+\newcommand{\Quickbrownfox}{THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG.}
+% Fakesection FANCYHDR
+\usepackage[]{fancyhdr}
+\fancyhead[L]{{\scshape \nouppercase{\leftmark}}} %leftmark is section
+\fancyhead[R]{{\scshape \nouppercase{\rightmark}}} %rightmark is subsection
+\fancyhead[C]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+
+% Fakesection FUZZ
+\hfuzz 2pt
+\overfullrule 25pt
+\vfuzz 2pt
+\hbadness=500
+\vbadness=1000
+
+% Fakesection HYPERREF (load last)
+\usepackage{hyperref}
+%\hypersetup{%
+  %colorlinks = true,%  Color text instead of boxes 
+  %linkcolor = Black!20!OliveGreen,% Color of internal links 
+  %citecolor = black,% Color of citations 
+  %urlcolor = Black!20!RoyalBlue,%  Color of external urls
+  %pdfstartview = Fit,% 
+  %pdfmenubar = true,% 
+  %pdftoolbar = true,%
+  %bookmarksopen = false,% 
+  %bookmarksopenlevel = 1,%
+%}
+
+
+% Fakesection TITLE FORMAT
+
+\makeatletter
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\@subtitle}{}%
+
+\renewcommand\maketitle{%
+  \rule{\textwidth}{4pt}\\\[3ex]
+  {\LARGE\bfseries\sffamily\@title}
+  \par{\large\sffamily\@subtitle}
+  \par{\itshape \small \@date}\\\[1ex]
+  \rule{\textwidth}{2pt}
+  \par
+}
+\makeatother
+
+% Fakesection TITLE DEFINITIONS
+\title{Hi there}
+\subtitle{\quickbrownfox \space \quickbrownfox}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+$0
+
+\end{document}
+endsnippet
+#>>>
+#---------------------------
+#>>> DOC-TEMPLATES
+#---------------------------
+#<<< DOC STRUCTURE
+#---------------------------
+#<<< part "Part" b
+snippet part "Part" b
+\part{${1:part name}}\label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
+
+${0}
+endsnippet
+#>>>
+#<<< chap "Chapter" b
+snippet chap "Chapter" b
+\chapter{${1:chapter name}}\label{chap:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga }}}
+
+${0}
+endsnippet
+#>>>
+#<<< sec "Section" b
+snippet sec "Section" b
+\section{${1:section name}}\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+
+${0}
+endsnippet
+#>>>
+#<<< sub "Subsection" b
+snippet sub "Subsection" b
+\subsection{${1:subsection name}}\label{ssec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+
+${0}
+endsnippet
+#>>>
+#<<< ssub "Subsubsection" b
+snippet ssub "Subsubsection" b
+\subsubsection{${1:subsubsection name}}\label{sssec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+
+${0}
+endsnippet
+#>>>
+#<<< par "Paragraph" b
+snippet par "Paragraph" b
+\paragraph{${1:paragraph name}}
+\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+
+${0}
+endsnippet
+#>>>
+#<<< subp "Subparagraph" b
+snippet subp "Subparagraph" b
+\subparagraph{${1:subparagraph name}}
+\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+
+${0}
+endsnippet
+#>>>
+#<<< ni "Non-indented paragraph" b
+snippet ni "Non-indented paragraph" b
+\noindent
+${0}
+endsnippet
+#>>>
+#---------------------------
+#>>> END DOC STRUCTURE
+#---------------------------
+#<<< LECTURENOTES 
+#---------------------------
+# BOXES, THEOREMS ETC
+#<<< check "checkingin" 
+snippet check "checkingin" 
+\begin{CheckingIn}% 
+$1
+
+  \begin{itemize}
+    \item[\mcA] $2
+    \item[\mcB] $3
+    \item[\mcC] $4
+    \item[\mcD] $5
+    \item[\mcE] $6
+  \end{itemize}
+  %surround correct answer in \Answer{} command
+
+\end{CheckingIn}
+endsnippet
+#>>>
+#<<< defn "definition" 
+snippet defn "definition" 
+\begin{definition}[${1:title}]\label{def:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+  ${0}
+\end{definition}
+endsnippet
+#>>>
+#<<< key "key idea" 
+snippet key "key idea" 
+\begin{keyidea}[${1:title}]\label{key:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+  ${0}
+\end{keyidea}
+endsnippet
+#>>>
+#<<< ex "example" 
+snippet ex "example" 
+\begin{example}[${1:title}]\label{ex:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+  ${0}
+\end{example}
+endsnippet
+#>>>
+#<<< exs "example starred" 
+snippet exs "example starred" 
+\begin{example*}[]\label{ex:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}} %${1:title}
+  ${0}
+\end{example*}
+endsnippet
+#>>>
+#<<< thm "theorem" 
+snippet thm "theorem" 
+\begin{theorem}[${1:title}]\label{thm:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g }}}
+  ${0}
+\end{theorem}
+endsnippet
+#>>>
+# INSTRUCTOR-ONLY-NOTES 
+#<<< inote "InstructorNote" i
+snippet inote "InstructorNote" i
+\InstructorNote{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< icom "InstructorComment" b
+snippet icom "InstructorComment" b
+\begin{InstructorComment}
+  ${1:${VISUAL:contents}}$0
+\end{InstructorComment}
+endsnippet
+#>>>
+#<<< mcom "MarginComment" b
+snippet mcom "MarginComment" i
+\MarginComment{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+##############################
+#---------------------------
+#>>> LECTURENOTES 
+#---------------------------
+#<<< ASSESSMENT
+#---------------------------
+#<<< tvf "test vfill" b
+snippet tvf "test vfill" b
+\tvfill
+endsnippet
+#>>>
+#<<< ans "Answer" i 
+snippet ans "Answer" i 
+\Answer{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< mc "multiple choice question" b
+snippet mc "multiple choice question" b
+\begin{multiplechoice}[points=0,
+  source={$1},
+  usage={$3},
+  topics={$4},
+  tags={$5},
+  difficulty={$6},
+  ID=`!v strftime("%Y%m%d-%H%M%S")`]%
+  \mypoints{1}
+$7
+
+  \begin{enumerate*}[itemjoin={\qquad},label=(\Alph*)]
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+  \end{enumerate*}
+\end{multiplechoice}
+endsnippet
+#>>>
+#<<< id "id" b
+snippet id "id" b
+ID=`!v strftime("%Y%m%d-%H%M%S")`]%
+endsnippet
+#>>>
+#<<< qtn "question" b
+snippet qtn "question" b
+\begin{question}[points=0,
+  source={${1:source}},
+  subtitle={${2:subtitle}},
+  topics={${3:topics}},
+  tags={${4:tags}},
+  difficulty={${5:difficulty}},
+  ID=`!v strftime("%Y%m%d-%H%M%S")`]%
+  \mypointscdp{5}{3+1+1} %or \mypointscd{5}{3+1} or \mypoints{5}
+  $6
+\end{question}
+endsnippet
+#>>>
+#<<< qsol "question solution" b
+snippet qsol "question solution" b
+\begin{qsolution}
+  $1
+\end{qsolution}
+endsnippet
+#>>>
+#<<< cbox "CommentBox" b
+snippet cbox "CommentBox" b
+\begin{CommentBox}
+ ${1:${VISUAL:contents}}$0
+\end{CommentBox}
+endsnippet
+#>>>
+#<<< sb "solution box" b
+snippet sb "solution box" b
+\begin{SolutionBox}{${1:0em}}
+ ${2:${VISUAL:contents}}$0
+\end{SolutionBox}
+endsnippet
+#>>>
+#<<< prob "problem" b
+snippet prob "problem" b
+\begin{problem}[source={$1},
+  %subtitle={},
+  ID=`!v strftime("%Y%m%d-%H%M%S")`]\label{pr:`!v strftime("%Y%m%d-%H%M%S")`}%
+$2
+
+\end{problem}
+endsnippet
+#>>>
+#<<< sil "solutioninline" i
+snippet sil "solutioninline" i
+\solutioninline{${1:${VISUAL:contents}}$0}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-ASSESSMENT
+#---------------------------
+
+#---------------------------
+#<<< ENVIRONMENTS 
+#---------------------------
+#<<< "b(egin)?" "begin{} / end{}" br
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1:something}}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+#>>>
+#<<< graph "graph/image" i
+snippet graph "graph/image" i
+\includegraphics[width=${1:0.5}\textwidth]{$2} 
+endsnippet
+#>>>
+#<<< cc "center" b
+snippet cc "center" b
+\begin{center}
+  ${1:${VISUAL}}
+\end{center}
+endsnippet
+#>>>
+#<<< itemize "itemize" b
+snippet itemize "itemize" b
+\begin{itemize}${1:[nosep]}
+  \item $2
+  \item $3
+  \item $4
+\end{itemize}
+endsnippet
+#>>>
+#<<< enum "enumerate" b
+snippet enum "enumerate" b
+\begin{enumerate}${1:[label=(\alph*)]}
+  \item $2
+  \item $3
+  \item $4
+\end{enumerate}
+endsnippet
+#>>>
+#<<< it "Individual item" b
+snippet it "Individual item" b
+\item ${1}
+$0
+endsnippet
+#>>>
+#<<< listing "listing environment" b
+snippet listing "listing environment" b
+\begin{lstlisting}
+${1:${VISUAL}}
+\end{lstlisting}
+endsnippet
+#>>>
+#<<< tab "tabular / array environment" b
+snippet tab "tabular / array environment" b
+\begin{${1:t}${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${2:c}}
+$0${2/((?<=.)c|l|r)|./(?1: & )/g}
+\end{$1${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+endsnippet
+#>>>
+#<<< table "Table environment" b
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{${4:t}${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{$4${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+\end{table}
+endsnippet
+#>>>
+#<<< fig "Figure environment" b
+snippet fig "Figure environment" b
+\begin{figure}[${2:htpb}]
+	\centering
+	\includegraphics[width=${3:0.7}\linewidth]{graphics/${4:name.ext}}
+    \caption{${4/(\w+)\.\w+/\u$1/}$0}
+	\label{fig:${4/(\w+)\.\w+/$1/}}
+\end{figure}
+endsnippet
+#>>>
+#<<< figt "Figure with today's graph" b
+snippet figt "Figure with today's graph" b
+\begin{figure}[${2:htpb}]
+	\centering
+	\MyGraphics[${3:0.7}\linewidth]{graphics/`!v strftime("%F")`$4.${5:eps}}}
+	\caption{$6}
+	\label{fig:`!v strftime("%F")`$4}
+\end{figure}
+endsnippet
+#>>>
+#<<< desc "Description" b
+snippet desc "Description" b
+\begin{description}
+	\item[$1] $0
+\end{description}
+endsnippet
+#>>>
+#<<< twocolumn "two columns" b
+snippet twocolumn "two columns" b
+\begin{multicols}{2}
+$0
+%\columnbreak
+\end{multicols}
+endsnippet
+#>>>
+#---------------------------
+#>>> ENVIRONMENTS 
+#---------------------------
+
+#---------------------------
+#<<< TECHNICAL
+#---------------------------
+#<<< setlength "Set Length" b
+snippet setlength "Set Length" b
+\setlength{${1:\length}}{${2:dimension (plus glue)}} 
+endsnippet
+#>>>
+#<<< torp "texorpdfstring" i
+snippet torp "texorpdfstring" i
+\texorpdfstring{${1:${VISUAL}}}{${2:plaintext}}
+endsnippet
+#>>>
+#<<< date "date" i
+snippet date "date" i
+`!v strftime("%Y%m%d-%H%M%S")`
+endsnippet
+#>>>
+#<<< ms "medskip" b
+snippet ms "medskip" b
+\medskip
+endsnippet
+#>>>
+#<<< bs "bigskip" b
+snippet bs "bigskip" b
+\bigskip
+endsnippet
+#>>>
+#<<< sp "vspace" b
+snippet sp "vspace" b
+\vspace{$1em}
+endsnippet
+#>>>
+#<<< vf "vfill" b
+snippet vf "vfill" b
+\vfill
+
+endsnippet
+#>>>
+#<<< np "newpage" b
+snippet np "newpage" b
+\newpage
+
+endsnippet
+#>>>
+#<<< npb "blank newpage" b
+snippet npb "blank newpage" b
+\newpage\mbox{} % or \null\newpage
+
+endsnippet
+#>>>
+#<<< rule "rule" i
+snippet rule "rule" i
+\rule[${1:raise}]{${2:width}}{${3:thickness}}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-TECHNICAL
+#---------------------------
+#<<< BOXES
+#---------------------------
+#<<< mbox "mbox" i
+snippet mbox "mbox" i
+\mbox{${1:content}}
+endsnippet
+#>>>
+#<<< makebox "makebox" i
+snippet makebox "makebox" i
+\makebox[${1:width}][${2:l,r,c,s}]{${3:content}}
+endsnippet
+#>>>
+#<<< fbox "fbox" i
+snippet fbox "fbox" i
+\fbox{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< framebox "framebox" i
+snippet framebox "framebox" i
+\framebox[${1:width}][${2:l,r,c,s}]{${3:content}}
+endsnippet
+#>>>
+#<<< frameboxtextwidth "fbox textwidth" i
+snippet frameboxtextwidth "fbox textwidth" i
+\framebox[${1:\textwidth}][c]{% 
+\parbox[${2:align}][${3:height}][c]{${4:\dimexpr\textwidth-\fboxsep*2-\fboxrule*2\relax}}{%
+${5:text}
+}%
+}
+endsnippet
+#>>>
+#<<< parbox "parbox" i
+snippet parbox "parbox" i
+\parbox[${1:c,t,b}][${2:height}][${3:c,t,b,s}]{${4:width}}{%
+${5:content}
+}
+endsnippet
+#>>>
+#<<< minipage "minipage" i
+snippet minipage "minipage" i
+\begin{minipage}[${1:c,t,b}][${2:height}][${3:c,t,b,s}]{${4:width}}
+  ${5:content}
+\end{minipage}
+endsnippet
+#>>>
+#<<< fcolorbox "fcolorbox" i
+snippet fcolorbox "fcolorbox" i
+\fcolorbox{${1:border}}{${2:interior}}{% %If not more than one line, can omit parbox
+\parbox[t][${3:height}][c]{${4:\dimexpr\textwidth-\fboxsep*2-\fboxrule*2\relax}}{%
+${5:text}
+}%
+}
+endsnippet
+#>>>
+#<<< raisebox "raisebox" i
+snippet raisebox "raisebox" i
+\raisebox{${1:lift}}[${2:height}][${3:depth}]{${4:content}}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-BOXES
+#---------------------------
+#<<< MISC
+#---------------------------
+#<<< crs "Course"
+snippet crs "Course" i
+\course${1:[STAT]}{${2:${VISUAL}}}
+endsnippet
+#>>> 
+#---------------------------
+#>>> END-MISC
+#---------------------------
+
+#---------------------------
+#<<< GENERAL TEXT FORMATTING 
+#---------------------------
+#<<< bf "textbf" i 
+snippet bf "textbf" i 
+\textbf{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< tt "texttt" i 
+snippet tt "texttt" i 
+\texttt{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< em "emph" i
+snippet em "emph" i
+\emph{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< vb "verbatim" i
+snippet vb "verbatim" i
+\verb|${1:${VISUAL}}|
+endsnippet
+#>>>
+#<<< lstinline "Inline Listing"
+snippet lil "Inline Listing" i
+\lstinline|${1:${VISUAL}}|
+endsnippet
+#>>>
+#<<< link "link" i
+snippet link "link" i
+\href{${2:${VISUAL}}}{${1:description}}
+endsnippet
+#>>> 
+#---------------------------
+#>>> GENERAL TEXT FORMATTING 
+#---------------------------
+#<<< COLORS
+#---------------------------
+#<<< trm "textrm" i 
+snippet trm "textrm" i 
+\textrm{${1:${VISUAL:contents}}}
+endsnippet
+#>>>
+#<<< red "red" i
+snippet red "red" i
+\textcolor{Red}{$1}
+endsnippet
+#>>>
+#<<< blu "blue" i
+snippet blu "blue" i
+\textcolor{RoyalBlue}{$1}
+endsnippet
+#>>>
+#<<< gre "green" i
+snippet gre "green" i
+\textcolor{ForestGreen}{$1}
+endsnippet
+#>>>
+#<<< yel "yellow" i
+snippet yel "yellow" i
+\textcolor{Dandelion}{$1}
+endsnippet
+#>>>
+#<<< pur "purple" i
+snippet pur "purple" i
+\textcolor{Purple}{$1}
+endsnippet
+#>>>
+#<<< lime "lime" i
+snippet lime "lime" i
+\textcolor{LimeGreen}{$1}
+endsnippet
+#>>>
+#<<< bro "brown" i
+snippet bro "brown" i
+\textcolor{RawSienna}{$1}
+endsnippet
+#>>>
+#<<< pin "pink" i
+snippet pin "pink" i
+\textcolor{CarnationPink}{$1}
+endsnippet
+#>>>
+#<<< gra "gray" i
+snippet gra "gray" i
+\textcolor{Gray}{$1}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-COLORS
+#---------------------------
+
+#---------------------------
+#<<< BASIC MATH
+#---------------------------
+#<<< $ "math" i
+snippet $ "math" i
+$${1:${VISUAL:contents}}$
+$0
+endsnippet
+#>>>
+#<<< \[ "display math" b
+snippet \[ "display math" b
+\[
+  ${1:${VISUAL}}
+\]
+$0
+endsnippet
+#>>>
+#<<< ^ "superscript" i
+snippet ^ "superscript" i
+^{$1}
+endsnippet
+#>>>
+#<<< _ "subscript" i
+snippet _ "subscript" i
+_{$1}
+endsnippet
+#>>>
+#<<< sq "sqrt" i
+snippet sq "sqrt" i
+\sqrt{$1}
+endsnippet
+#>>>
+#<<< ff "Fraction" i
+snippet ff "Fraction" i
+\frac{${1:${VISUAL:num}}}{${2:denom}}
+endsnippet
+#>>>
+#<<< ab "absolute value" i
+snippet ab "absolute value" i
+\lvert ${1:${VISUAL}} \rvert
+endsnippet
+#>>>
+#<<< lrab "big absolute value" i
+snippet lrab "left | right| " i
+\left\lvert ${1:${VISUAL}} \right\rvert
+endsnippet
+#>>>
+#<<< lr( "left( right)" w
+snippet lr( "left( right)" w
+\left( ${1:${VISUAL}} \right)
+endsnippet
+#>>>
+#<<< lr| "left| right|" w
+snippet lr| "left| right|" w
+\left| ${1:${VISUAL}} \right|
+endsnippet
+#>>>
+#<<< lr{ "left\{ right\}" w
+snippet lr{ "left\{ right\}" w
+\left\\{ ${1:${VISUAL}} \right\\}
+endsnippet
+#>>>
+#<<< lr[ "left[ right]" w
+snippet lr[ "left[ right]" w
+\left[ ${1:${VISUAL}} \right]
+endsnippet
+#>>>
+#<<< lrang "left langle, right rangle" i
+snippet lrang "langle, rangle" i
+\left\langle ${1:${VISUAL}} \right\rangle
+endsnippet
+#>>>
+#<<< eq "Equation" b
+snippet eq "Equation" b
+\begin{equation}\label{eq:${1:label}}
+  ${0:${VISUAL:equation}}
+\end{equation}
+endsnippet
+#>>>
+#<<< eqnn "Equation without number" b
+snippet eqnn "Equation without number" b
+\begin{equation*}
+	$0
+\end{equation*}
+endsnippet
+#>>>
+#<<< eqa "Equation array" b
+snippet eqa "Equation array" b
+\begin{eqnarray}
+	$1 & $2 & $0
+\end{eqnarray}
+endsnippet
+#>>>
+#<<< eqann "Equation array without numbers" b
+snippet eqann "Equation array without numbers" b
+\begin{eqnarray*}
+	$1 & $2 & $0
+\end{eqnarray*}
+
+endsnippet
+#>>>
+#<<< mat "Smart Matrix"
+snippet mat "Smart Matrix"
+\begin{${1:p/b/v/V/B/small}matrix}
+	$0
+\end{$1matrix}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-BASIC MATH
+#---------------------------
+#<<< MISC
+#---------------------------
+#<<< os "overset" i
+snippet os "overset" i
+\overset{$1}{$2}
+endsnippet
+#>>>
+#<<< set "set" i
+snippet set "set" i
+\left\\{$1\;|\; $2 \right\\}
+endsnippet
+#>>>
+#<<< map "map" i
+snippet map "map" i
+\newcommand{\map}[3]{#1:#2\rightarrow #3}
+endsnippet
+#>>>
+#<<< vec "vec" i
+snippet vec "vec" i
+\vec{$1}
+endsnippet
+#>>>
+#<<< vector "Description" i
+snippet vector "Description" i
+\displaystyle \left[ \begin{matrix}
+    $1 \\\\
+    $2 \\\\
+    $3
+  \end{matrix} \right]
+endsnippet
+#>>>
+#---------------------------
+#>>> END-MISC
+#---------------------------
+#<<< DERIVATIVES
+#---------------------------
+#<<< pd "partial" i
+snippet pd "partial" i
+\frac{\partial $1}{\partial $2}
+endsnippet
+#>>>
+#<<< pdf "partial f" i
+snippet pdf "partial f" i
+\frac{\partial f}{\partial $1}
+endsnippet
+#>>>
+#<<< dd "deriv" i
+snippet dd "deriv" i
+\frac{d$1}{d$2}
+endsnippet
+#>>>
+#<<< ddf "deriv f" i
+snippet ddf "deriv f" i
+\frac{df}{d $1}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-DERIVATIVES
+#---------------------------
+#<<< OPERATORS
+#---------------------------
+#<<< sum "summation" i
+snippet sum "summation" i
+\sum${2:_{$3}^{$4}} $1
+endsnippet
+#>>>
+#<<< lim "limit" i
+snippet lim "limit" i
+\lim${2:_{$3}} $1
+endsnippet
+#>>>
+#<<< int "integral" i
+snippet int "integral" i
+\int${3:_{$4}^{$5}} $1\,d$2
+endsnippet
+#>>>
+#<<< evint "eval integral" i
+snippet evint "eval integral" i
+\left.$1\right\rvert_{$2}^{$3}
+endsnippet
+#>>>
+#<<< iint "iterated dblint" i
+snippet iint "iterated dblint" i
+\int_{$1}^{$2}\int_{$3}^{$4}$5\,d$6d$7
+endsnippet
+#>>>
+#<<< gcd "gcd(,)" i
+snippet gcd "gcd(,)" i
+\mathrm{gcd}($1)
+endsnippet
+#>>>
+#<<< floor "floor" i
+snippet floor "floor" i
+\lfloor $4 \rfloor
+endsnippet
+#>>>
+#<<< proj "projection" i
+snippet proj "projection" i
+\mathrm{proj}_{\vec{$1}}\vec{$2}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-OPERATORS
+#---------------------------
+#<<< LETTERS
+#---------------------------
+#<<< R "reals" i
+snippet R "reals" i
+\mathbb{R}
+endsnippet
+#>>>
+#<<< R2 "reals" i
+snippet R2 "reals" i
+\mathbb{R}^2
+endsnippet
+#>>>
+#<<< R3 "reals" i
+snippet R3 "reals" i
+\mathbb{R}^3
+endsnippet
+#>>>
+#<<< Co "complex" i
+snippet Co "complex" i
+\mathbb{C}
+endsnippet
+#>>>
+#<<< N "natural" i
+snippet N "natural" i
+\mathbb{N}
+endsnippet
+#>>>
+#<<< Q "rational" i
+snippet Q "rational" i
+\mathbb{Q}
+endsnippet
+#>>>
+#<<< Z "integers" i
+snippet Z "integers" i
+\mathbb{Z}
+endsnippet
+#>>>
+#<<< scr "mathscr" i
+snippet scr "mathscr" i
+\mathscr{$1}
+endsnippet
+#>>>
+#---------------------------
+#>>> END-LETTERS
+#---------------------------
+
+#---------------------------
+#<<< TEXT REPLACEMENT 
+#---------------------------
+#<<< st "such that" i
+snippet st "such that" i
+such that
+endsnippet
+#>>>
+#<<< iff "if and only if" i
+snippet iff "if and only if" i
+if and only if
+endsnippet
+#>>>
+#<<< wlog "wlog" i
+snippet wlog "wlog" i
+without loss of generality
+endsnippet
+#>>>
+#---------------------------
+#>>> TEXT REPLACEMENT
+#---------------------------

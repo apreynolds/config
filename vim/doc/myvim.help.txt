@@ -1,0 +1,347 @@
+==============================================================================
+CONTENTS                                                         *myvim-help*
+
+    |myvim-quicknotes| -- VIM QUICKNOTES
+    |myvim-registers| -- REGISTERS 
+       |myvim-ctrlr| -- CTRLR 
+       |myvim-macros| -- MACROS 
+    |myvim-lists| -- LISTS 
+       |myvim-args| -- ARGS 
+       |myvim-ilists| -- ILISTS 
+    |myvim-arithmetic| -- ARITHMETIC 
+    |myvim-encryption| -- encryption 
+    |myvim-motion| -- motion 
+    |myvim-normal| -- normal command 
+    |myvim-regex| -- VIM-REGEX 
+       |myvim-regex-examples| -- Regex Examples 
+    |myvim-searching| -- SEARCHING 
+    |myvim-windows| -- windows 
+
+`{{{ QUICKNOTES`
+==============================================================================
+QUICKNOTES                                                   *myvim-quicknotes*
+
+vim-markdown plugin: 
+- HeaderIncrease command is awesome
+- ]] and [[ commands, and ]h, ]u, for moving among headers, are great
+
+- 2025-06-20: remove ] from g:tex_isk?
+- 2025-06-20: in vim :ascii command will show hex code of character under cursor.
+- 2025-06-20: regex to replace a particular unicode character (angle bracket): s/\%u27e8/</g
+
+To change next 4 characters: c4<space>
+
+- 2024-11-07 ISSUE TOC weird behaviour: after updating vimwiki (on old
+  Macbook), the table of contents now has the # present and visible, and I'm
+  not sure how to remedy this. Happened even with a simple wiki file and the
+  stock css file that vimwiki generates.
+- 2024-11-06 syntax highlighting of TODO, DONE, etc: latest version makes this
+  customizable; see `.vimrc`
+- 2024-11-06 Customizing diary creation to include time: I've just decided not
+  to do this anymore.
+
+(ON HOLD, since I'm using ripgrep) To check out: [[https://www.reddit.com/r/vim/comments/hqj77s/how_to_use_tags_in_vimwiki/|using tags]]
+
+https://github.com/matt-snider/vim-tagquery
+
+- ISSUE Ultisnips: since switching to single-vim-session approach with all the
+  wikis open, sometimes ultisnips won't work, and the INSERT message becomes
+  INSERT COMPL GENERIC. A quick google search turned up nothing. I can resolve
+  it by quitting all and re-opening the session 
+ 
+- I've decided not to bother with vim's jumplist, for a couple reasons:
+  - because it includes jumps from all buffers, it doesn't mesh with my
+    current workflow
+  - it seems ctrl-i is mapped to something by one of my plugins, because in
+    vanilla vim it just moves through jump list, but in my vim it doesn't work
+    as expected
+- Instead, I've moved back to `vim-signature`, using marks (note that I
+  disabled `dispatch` mappings as they conflicted with `vim-signature`).
+
+- https://stackoverflow.com/questions/64552605/is-it-possible-to-display-result-of-rg-into-quick-fix-window/68510609#68510609 Rg and quickfix list, amazing.
+- setting rg as grepprg (I'm shaky on this): https://github.com/benknoble/Dotfiles/blob/master/links/vim/plugin/rg.vim
+
+
+ctrl-v <tab> will input actual tab (even with `set expandtab`)
+
+:echo v:this_session will show current session name
+
+:term command will open a terminal in a buffer! Amazing. ctrl-d to exit
+
+Easy-align: in interactive mode (i.e. after selecting and pressing Enter), you
+can press ctrl-g to set "ignore groups" to empty, which is useful for aligning
+commented lines.
+
+vnew will open a new blank buffer with no name in a vertical split
+
+To move window to a new tab: ctrl-w T
+
+https://www.reddit.com/r/vim/comments/qwnjvh/what_vim_trick_or_keycombo_do_you_wish_you_new/
+
+Check out vim abolish plugin 
+Check out plugin https://github.com/tpope/vim-speeddating for incrementing/decrementing dates
+
+Use `:g` global command to yank every line that matches a search pattern to your register:
+- `qaq` (clear register `a` before appending)
+- `:g/TODO/y A` (`:g` without a range searches whole file for pattern, `y` specifies yank that line (`d` deletes, `norm[!]` runs subsequent macro/normal-command), capital `A` means we're appending to register `a`.
+
+Quick way to select:
+`v/word`; `ctrl-g/ctrl-t` to go to next/previous instance; `enter`; `y` or `d`
+
+`gv` will select previous visual selection
+
+`>` in visual mode will indent
+`gg=G` to indent the file
+
+`:sh` exits temporarily to shell; then `exit` (or `ctl-D`) in shell goes back to vim.
+
+`q:` will bring up recent command history
+
+https://vim.fandom.com/wiki/Copy_search_matches
+
+- `gx` opens url under cursor in browser. (See `:help gx`)
+
+`}}}`
+
+`{{{ REGISTERS`
+==============================================================================
+REGISTERS                                                    *myvim-registers*
+
+`{{{ CTRLR`
+------------------------------------------------------------------------------
+CTRLR                                                            *myvim-ctrlr*
+
+
+'Ctrl R': see |i^R| and |reg|
+`Ctrl R`: see `:help i^R`, and `:help reg`
+`:reg` will bring up list of registers; see `:help reg`
+`Ctrl R - "` inserts current search register 
+`Ctrl R - %` inserts current filename
+`Ctrl R - a` inserts contents of register a
+`Ctrl R - /` inserts contents of last search pattern
+`Ctrl R - 0` inserts contents of register 0 (recently yanked)
+`Ctrl R - :` inserts contents of last command line
+`Ctrl R - +` inserts contents of clipboard
+`Ctrl R - =` inserts contents of the expression register: you'll be prompted
+to enter an expression, e.g. 12*13. AMAZING. 
+
+http://blog.dreasgrech.com/2010/06/extending-vim-with-expression-register.html
+`}}}`
+
+`{{{ MACROS`
+------------------------------------------------------------------------------
+MACROS                                                          *myvim-macros*
+
+To save a macro:
+- record a macro to q.
+- open vimrc, enter "qp in normal mode (contents of register q will be pasted)
+- surround in quotes and start line with let `@q=`.  
+
+Helpful tips: 
+- <80>kb means delete key,  ^C^C means ctrl+C, ^M means return
+- `:reg` will display registers.
+http://stackoverflow.com/questions/2024443/saving-vim-macros
+
+
+`}}}`
+
+`}}}`
+
+`{{{ LISTS`
+==============================================================================
+LISTS                                                            *myvim-lists*
+
+Use `:vim[grep]` to add all these lines to your quickfix list:
+- `:vim/TODO/ %` (`:vim` is abbreviation for `:vimgrep`, `%` is the abbreviation for the current buffer as the syntax requires a file)
+
+`{{{ ARGS`
+------------------------------------------------------------------------------
+ARGS                                                              *myvim-args*
+
+Populating the arglist in vim can be a very useful way to execute commands on multiple files. 
+Useful: `help args`, `argdo`, `argadd`, `argupdate` etc. 
+One can use backticks to run a subshell command to add files to the arglist, e.g.
+args `find . -name file*`~
+Note that `args` will open first file in arglist, while `arga` won't.
+
+See:
+https://dalibornasevic.com/posts/43-12-vim-tips
+http://vimcasts.org/episodes/populating-the-arglist/
+
+
+`}}}`
+
+`{{{ ILISTS`
+------------------------------------------------------------------------------
+ILISTS                                                          *myvim-ilists*
+
+`:il /foo` will list all lines containing search pattern "foo"
+`:<linenumber><CR>` will  jump to corresponding line
+
+https://www.reddit.com/r/vim/comments/2w5f6h/vim_list_all_matching_lines/
+
+
+`}}}`
+
+`}}}`
+
+`{{{ ARITHMETIC`
+==============================================================================
+ARITHMETIC                                                  *myvim-arithmetic*
+
+- `CTRL-A` for incrementing (`CTRX-X` for decrementing) numbers on a line (doesn't need to be under cursor); 
+- `gCTRL-A` will line-by-line increment (AMAZING) 
+- NOTE if used within tmux, `CTRL-A` must be executed twice
+
+`}}}`
+
+`{{{ ENCRYPTION`
+==============================================================================
+ENCRYPTION                                                   *myvim-encryption*
+
+`:X` in the file and enter the passphrase twice (uses blowfish2, set in vimrc) 
+
+To remove enryption: open file, `:X` and leave passphrase empty, hit enter (twice)
+
+`}}}`
+
+`{{{ MOTION`
+==============================================================================
+MOTION                                                             *myvim-motion*
+
+ `g;` jump to most recent change
+ `gj, gk` for navigating up/down long lines (ignoring line breaks)
+ `z-Enter`  moves current location to top of screen.  Super useful! 
+ `Shift+L`  moves cursor to bottom of window.  Also S+H, S+M 
+ `e`   forward to end of word (so for example, de will delete to end of word) 
+ `ge`  back to end of word 
+ `0`  Move to the beginning of the line. 
+ `^`  Move to the first non-blank character of the line. 
+ `), (`  Jump forward/backward one sentence. 
+ `}, {`  Jump forward/backward one paragraph 
+ `''`  Return to the line where the cursor was before the latest jump. 
+ ``  Return to the cursor position before the latest jump (undo the jump). 
+ `'.`  Jump to the last-changed line. 
+ `%`  Jump to matching brace 
+ `cfx`  change until next found occurrence of x (including x)
+ `ctx`  change until next found occurrence of x  (excluding x)
+ `cw`  change to next word 
+ `cc`  change entire line 
+ `ce`  change from cursor to end of word 
+ `c$`  change to end of line 
+ `ci”`  change inside double quotes (can also use $ in math, (, {, etc)
+ `ca”`  change around double quotes 
+
+`}}}`
+
+`{{{ NORMAL COMMAND`
+==============================================================================
+NORMAL                                                           *myvim-normal*
+
+`Ctrl-o` allows one normal mode command, then returns to insert mode
+https://dalibornasevic.com/posts/43-12-vim-tips 
+Run normal mode commands across a range: say we have the following javascript lines and we forgot to append ;  to each of them:
+var element = $(this)
+var tabName = element.data('tab')
+var report = element.data('report')
+We can visually select all 3 lines and then run command `:normal A;`  that will execute `A;` (append ;) for each line. 
+Alternatively, we can run same on the whole content of the file with `:%normal A;`
+
+`}}}`
+
+`{{{ REGEX`
+
+==============================================================================
+REGEX                                                       *myv-regex*
+
+https://vim.fandom.com/wiki/Search_and_replace
+http://vimregex.com/
+https://regular-expressions.mobi/anchors.html
+
+Pattern-tips: 
+`\v` Means to enter very magic mode.
+`<`  Find the beginning of a word boundary.
+`\w*` is shorthand for [a-zA-Z0-9_].
+`\u` uppercase the following character.
+`\1` Each () capture group is assigned a number from 1 to 9.
+`\L` lowercase all the following characters.
+
+TIP: to copy a recent useful regex:
+- `q:` to bring up command history
+- scroll to the command I wish to copy, and yy to copy
+- Done. Now it's available for me to paste here.
+
+`{{{ REGEX EXAMPLES`
+------------------------------------------------------------------------------
+Regex Examples                                          *myvim-regex-examples*
+
+Replace final "field" of a csv file:~
+`s/[^,]*$/REPLACMENT-TEXT/`
+
+Replace thisIsSomeTest with this-is-some-text:~
+`s/\([a-z]\)\([A-Z]\)/\1-\l\2/g`
+
+Remove last n characters from a line:~
+`s/.\{n}$//`
+
+Delete lines not beginning with character:~
+`v/^\$/d`  will delete all lines that do not (`v`) begin (`^`) with $.
+
+Two words, order doesn't matter; ack ~
+`/^(?=.*Tim)(?=.*stupid).+/` regex will start at start of string, find Tim in string, then find stupid in string, then match rest of string.
+From https://stackoverflow.com/questions/24656131/regex-for-existence-of-some-words-whose-order-doesnt-matter
+
+Add character to end of line~
+`s/$/}/` puts a `}` and the end each line (but maybe with whitespace before it)
+
+Find non-ascii (unicode) characters:~
+`/[^\x00-\x7F]` 
+https://codeyarns.com/2014/04/24/how-to-find-non-ascii-characters-in-vim/
+
+Condense multiple blank lines to a single blank line:~
+`:%s/\s\+$//e`  or `:%s/\n\{3,}/\r\r/e`
+Will delete all trailing whitespace from each line, then replace three or more consecutive line endings with two line endings (a single blank line).  
+The e substitute flag means that no error is displayed if the pattern is not found.
+http://vim.wikia.com/wiki/Remove_unwanted_empty_lines
+
+Make every first letter of a word uppercase:~
+`: s/\v<(.)(\w*)/\u\1\L\2/g` 
+(see above for pattern-tips)
+
+`}}}`
+
+`}}}`
+
+`{{{ SEARCHING`
+==============================================================================
+SEARCHING                                                    *myvim-searching*
+
+- `ctrl-g`, `ctrl-t` to go navigate search matches; OR `n/N` 
+- `*, #` search for (next,previous) occurrence of word under cursor
+- `g*, g#` search for (next,previous) occurrence of not-exact-match of word under cursor
+
+`}}}`
+
+`{{{ WINDOWS`
+==============================================================================
+WINDOWS                                                         *myvim-windows*
+
+`:set scrollbind` for simultaneous scrolling
+
+`C-w r`  will swap left-right or top/bottom windows.   
+`C-w L`  move window to far right 
+`C-w J`  move window to bottom 
+`C-w K`  move window to top 
+`C-w H`  move window to far left 
+`C-w h`  move to left pane 
+`C-w l`  move to right pane 
+`C-w >`  increase right margin
+`C-w <`  decrease right margin
+
+`C-w m`  maximizes current window (custom; see vimrc)
+`C-w =`  equalizes 
+`C-w `  maximizes current window width 
+`C-w _`  maximizes current window height 
+
+`}}}`
+

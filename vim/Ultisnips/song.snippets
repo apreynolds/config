@@ -1,0 +1,348 @@
+priority -50
+extends tex
+
+##############################
+# MUSIC  
+##############################
+### SONGSHEET STUFF ###
+snippet rpb "repeat bar" i
+| \hspace{0.5cm} $\repeatbar$ \hspace{0.5cm}
+endsnippet
+snippet b1c "barline and chord" i
+| _{$1} \hspace{1cm}
+endsnippet
+snippet b2c "barline and two chords" i
+| _{$1} \hspace{0.5cm} _{$2} \hspace{0.5cm}
+endsnippet
+snippet b4c "barline and four chords" i
+| _{$1} \hspace{0.25cm} _{$2} \hspace{0.25cm} _{$3} \hspace{0.25cm} _{$4} \hspace{0.25cm}
+endsnippet
+snippet 1ex "1ex" i
+\\\\[${1:1}ex]
+endsnippet
+snippet meter "meter" i
+\textcolor{Red}{\meter{$1}{$2}}
+endsnippet
+snippet next "lyrics for next part" i
+\$\rightarrow\$\emph{${1:${VISUAL:contents}}}\$\rightarrow\$ 
+endsnippet
+snippet trans "transpose" i
+istransposed={$1}
+endsnippet
+snippet easy "difficulty=easy" i
+difficulty={\easy}
+endsnippet
+snippet mod "difficulty=moderate" i
+difficulty={\moderate}
+endsnippet
+snippet hard "difficulty=difficult" i
+difficulty={\difficult}
+endsnippet
+snippet bb "dot indicating beat " i
+^{\mydot}
+endsnippet
+snippet bbs "dot indicating beat then space " i
+^{\mydot} \ssp
+endsnippet
+snippet bbis "dot indicating beat then space " i
+\mydot \ssp
+endsnippet
+snippet uls "underline space" i
+\ul{\;\;}
+endsnippet
+snippet ul "underline" i
+\ul{${1:${VISUAL:contents}}}
+endsnippet
+snippet ltc "linktotoc" i
+\linktotoc
+endsnippet
+snippet llb "lyriclinebreak" i
+\lyriclinebreak
+endsnippet
+snippet chords "chords" b
+\chords{
+ ${1:${VISUAL:contents}}$0
+}
+endsnippet
+snippet lyrics "lyrics" b
+\lyrics{
+ ${1:${VISUAL:contents}}$0
+}
+endsnippet
+snippet str "structure" b
+\structure{
+ | ${1:${VISUAL:# of bars}} | \quad _{${2:${VISUAL:first chord}}} 
+}
+endsnippet
+snippet lwc "lyrics with chords" b
+\lyricswithchords{
+ ${1:${VISUAL:contents}}$0
+}
+endsnippet
+### CHORDS ###
+snippet Cm "C chord" i
+^{Cm$1}
+endsnippet
+snippet Csm "C chord" i
+^{C#m$1}
+endsnippet
+snippet Dbm "C chord" i
+^{Dbm$1}
+endsnippet
+snippet Dm "C chord" i
+^{Dm$1}
+endsnippet
+snippet Dsm "C chord" i
+^{D#m$1}
+endsnippet
+snippet Ebm "C chord" i
+^{Ebm$1}
+endsnippet
+snippet Em "C chord" i
+^{Em$1}
+endsnippet
+snippet Fm "C chord" i
+^{Fm$1}
+endsnippet
+snippet Fsm "C chord" i
+^{F#m$1}
+endsnippet
+snippet Gbm "C chord" i
+^{Gbm$1}
+endsnippet
+snippet Gm "C chord" i
+^{Gm$1}
+endsnippet
+snippet Gsm "C chord" i
+^{G#m$1}
+endsnippet
+snippet Abm "C chord" i
+^{Abm$1}
+endsnippet
+snippet Am "C chord" i
+^{Am$1}
+endsnippet
+snippet Asm "C chord" i
+^{A#m$1}
+endsnippet
+snippet Bbm "C chord" i
+^{Bbm$1}
+endsnippet
+snippet Bm "C chord" i
+^{Bm$1}
+endsnippet
+snippet C "C chord" i
+^{C$1}
+endsnippet
+snippet Cs "C chord" i
+^{C#$1}
+endsnippet
+snippet Db "C chord" i
+^{Db$1}
+endsnippet
+snippet D "C chord" i
+^{D$1}
+endsnippet
+snippet Ds "C chord" i
+^{D#$1}
+endsnippet
+snippet Eb "C chord" i
+^{Eb$1}
+endsnippet
+snippet E "C chord" i
+^{E$1}
+endsnippet
+snippet F "C chord" i
+^{F$1}
+endsnippet
+snippet Fs "C chord" i
+^{F#$1}
+endsnippet
+snippet Gb "C chord" i
+^{Gb$1}
+endsnippet
+snippet G "C chord" i
+^{G$1}
+endsnippet
+snippet Gs "C chord" i
+^{G#$1}
+endsnippet
+snippet Ab "C chord" i
+^{Ab$1}
+endsnippet
+snippet A "C chord" i
+^{A$1}
+endsnippet
+snippet As "C chord" i
+^{A#$1}
+endsnippet
+snippet Bb "C chord" i
+^{Bb$1}
+endsnippet
+snippet B "C chord" i
+^{B$1}
+endsnippet
+### SONG PARTS ###
+snippet intro "intro" b
+\begin{introbox}
+ \begin{intro}
+  ${1:${VISUAL:contents}}$0
+ \end{intro}
+\end{introbox}
+endsnippet
+snippet interlude "interlude" b
+\begin{interludebox}
+ \begin{interlude}
+  ${1:${VISUAL:contents}}$0
+ \end{interlude}
+\end{interludebox}
+endsnippet
+snippet verse "verse" b
+\begin{versebox} %V$1
+ \begin{verse}[name=V$1]
+  ${2:${VISUAL:contents}}$0
+ \end{verse}
+\end{versebox}
+endsnippet
+snippet bridge "bridge" b
+\begin{bridgebox}
+ \begin{bridge}
+  ${1:${VISUAL:contents}}$0
+ \end{bridge}
+\end{bridgebox}
+endsnippet
+snippet lift "lift" b
+\begin{liftbox} %L$1
+ \begin{lift}[name=L$1]
+  ${2:${VISUAL:contents}}$0
+ \end{lift}
+\end{liftbox}
+endsnippet
+snippet solo "solo" b
+\begin{solobox} 
+ \begin{solo}
+  ${2:${VISUAL:contents}}$0
+ \end{solo}
+\end{solobox}
+endsnippet
+snippet prechorus "prechorus" b
+\begin{prechorusbox} %pc$1
+ \begin{prechorus}[name=pr$1]
+  ${2:${VISUAL:contents}}$0
+ \end{prechorus}
+\end{prechorusbox}
+endsnippet
+snippet postchorus "postchorus" b
+\begin{postchorusbox}
+ \begin{postchorus}
+  ${1:${VISUAL:contents}}$0
+ \end{postchorus}
+\end{postchorusbox}
+endsnippet
+snippet chorus "chorus" b
+\begin{chorusbox} %C$1
+ \begin{chorus}[name=C$1]
+  ${2:${VISUAL:contents}}$0
+ \end{chorus}
+\end{chorusbox}
+endsnippet
+snippet outro "outro" b
+\begin{outrobox}
+ \begin{outro}
+  ${1:${VISUAL:contents}}$0
+ \end{outro}
+\end{outrobox}
+endsnippet
+### SONG DOCS ###
+snippet osong "Song, using leadsheets" b
+\documentclass[14pt]{leadsheet}
+\usepackage[left=1.0cm,top=1.3cm,bottom=1cm,right=1cm]{geometry}
+\usepackage{MyLeadsheetsOriginal}
+\begin{document}
+\sffamily
+
+\begin{song}[remember-chords=false,bar-shortcuts,verse/numbered,transpose=0]{title={$1}, year={$2}, key = {$3}, tempo={$4}}
+%If playing with capo e.g. on 1, include capo=1 
+%If transposing, include origkey={}
+%NOTE: Don't use writechord in origkey, because I don't want it to be transposed.
+
+
+$5
+
+\end{song}
+\end{document}
+endsnippet
+snippet song "Song, using leadsheets" b
+\documentclass[fontsize=14pt]{leadsheet}
+\usepackage{MyLeadsheets}
+\begin{document}
+\sffamily
+
+\phantomsection \label{$5}%
+\begin{song}[remember-chords=false,bar-shortcuts,verse/numbered,transpose=0]{%
+%GET SONG PROPERTIES FROM SPREADSHEET
+
+$6
+
+\linktotoc
+\end{song}
+\end{document}
+endsnippet
+snippet xsong "Xmas Song, using leadsheets" b
+\documentclass[12pt]{leadsheet}
+\usepackage[left=2cm,top=2cm,bottom=1.5cm,right=2cm]{geometry}
+\usepackage{MyLeadsheetsXmas}
+\begin{document}
+
+\begin{song}[remember-chords=true,verse/numbered]{title={$1}, band={$2}, genre={Christmas}, composer={$3}, key = {$4}}
+
+\medskip
+$5
+\end{song}
+
+\end{document}
+endsnippet
+### MISC/OBSOLETE? ###
+snippet ichord "inline chord" b
+\writechord{$1} & $2-$3-$4-$5-$6-$7 \\\\
+endsnippet
+snippet selectchords "select chords" b
+\bigskip
+Select chords:
+
+\begin{tabular}{ll}
+  \writechord{$1} & $2-$3-$4-$5-$6-$7 \\\\ %ichord snippet
+\end{tabular}
+endsnippet
+snippet openg "chord tuning" b
+\setchordscheme{
+tuning = {${1:D,B,G,D,G,D}}
+}
+endsnippet
+snippet opend "chord tuning" b
+\setchordscheme{
+tuning = {${1:D,A,F\#,D,A,D}}
+}
+endsnippet
+snippet dadgad "chord tuning" b
+\setchordscheme{
+tuning = {${1:D,A,G,D,A,D}}
+}
+endsnippet
+snippet 2lowd "chord tuning" b
+\setchordscheme{
+tuning = {${1:D,B,G,D,A,D}}
+}
+endsnippet
+snippet lowd "chord tuning" b
+\setchordscheme{
+tuning = {${1:E,B,G,D,A,D}}
+}
+endsnippet
+snippet tuning "chord tuning" b
+\setchordscheme{
+tuning = {${1:E,B,G,D,A,E}}
+}
+endsnippet
+##############################
+
