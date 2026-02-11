@@ -69,7 +69,7 @@ require("whoosh"):setup {
 
   -- File path for storing user bookmarks
   bookmarks_path = (ya.target_family() == "windows" and os.getenv("APPDATA") .. "\\yazi\\config\\plugins\\whoosh.yazi\\bookmarks") or
-         (os.getenv("HOME") .. "/.config/yazi/plugins/whoosh.yazi/bookmarks"),
+         (os.getenv("HOME") .. "/Documents/shared-settings/whoosh.yazi/bookmarks"),
 
   -- Replace home directory with "~"
   home_alias_enabled = true,                            -- Toggle home aliasing in displays
