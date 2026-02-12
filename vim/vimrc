@@ -341,8 +341,8 @@ nnoremap <leader>fu :FilesTextOnly ../<cr>
 nnoremap <leader>fau :FilesAll ../<cr>
 nnoremap <leader>fU :FilesTextOnly ../../<cr>
 nnoremap <leader>faU :FilesAll ../../<cr>
-nnoremap <leader>f0 :FilesAll ~//Documents/0desktopia<cr>
-nnoremap <leader>f1 :FilesAll ~/Documents/1math<cr>
+nnoremap <leader>f0 :FilesAll ~//Documents/0current<cr>
+nnoremap <leader>f1 :FilesAll ~/OneDrive\ -\ University\ of\ New\ Brunswick/1teach<cr>
 nnoremap <leader>f2 :FilesAll ~/OneDrive\ -\ University\ of\ New\ Brunswick/2work<cr>
 nnoremap <leader>f3 :FilesAll ~/Documents/3comp<cr>
 
@@ -537,8 +537,8 @@ map <leader>os :echo ObsessionStatus()<cr>
 
 " Here I'll define maps to open wiki sessions, using the g:session_dir variable
 " defined above:
-map <leader>s1 :execute "source " . g:session_dir . "mathwiki.vim"
-map <leader>s3 :execute "source " . g:session_dir . "compwiki.vim"
+map <leader>s1 :execute "source " . g:session_dir . "teachwiki.vim"<cr>
+map <leader>s3 :execute "source " . g:session_dir . "compwiki.vim"<cr>
 
 map <leader>sl :SessionLoad<cr>
 map <leader>ss :call SessUnloadWipeoutLoad()<cr>
@@ -694,19 +694,19 @@ endfunction
 
 let $myrx_todo = '\C\<\%(CONCERN\|DONE\|INFO\|FIXED\|HOWTO\|NOTE\|QUESTION\|RESOURCE\|SUMMARY\|TODO\|UPDATE\|ZTEMP\|\)\>'
 
-let math = {}
-let math.path = '~/Documents/1math/'
-let math.path_html = '~/Documents/1math/'
-let math.diary_rel_path = 'diary/'
-let math.index = 'math-index'
-let math.css_name = '.wikiconfig/style_www/style.css'
-let math.template_path = '~/Documents/1math/.wikiconfig/'
-let math.rx_todo = $myrx_todo
-let math.template_default = 'def_template'
-let math.template_ext = '.thtml'
-let math.auto_tags = 1
-let math.auto_export = 0
-let math.auto_diary_index = 1
+let teach = {}
+let teach.path = '~/OneDrive\ -\ University\ of\ New\ Brunswick/1teach/'
+let teach.path_html = '~/OneDrive\ -\ University\ of\ New\ Brunswick/1teach/'
+let teach.diary_rel_path = 'diary/'
+let teach.index = 'teach-index'
+let teach.css_name = '.wikiconfig/style_www/style.css'
+let teach.template_path = '~/OneDrive\ -\ University\ of\ New\ Brunswick/1teach/.wikiconfig/'
+let teach.rx_todo = $myrx_todo
+let teach.template_default = 'def_template'
+let teach.template_ext = '.thtml'
+let teach.auto_tags = 1
+let teach.auto_export = 0
+let teach.auto_diary_index = 1
 
 let work_website = {}
 let work_website.path = '/Documents/3comp/html/2work-website/'
@@ -740,7 +740,7 @@ let music_website.template_default = 'def_template'
 let music_website.template_ext = '.thtml'
 let music_website.auto_export = 1
 
-let g:vimwiki_list = [ math, work_website, comp, music_website ]
+let g:vimwiki_list = [ teach, work_website, comp, music_website ]
 
 
 "}}} end Setting up the wikis
@@ -1099,7 +1099,7 @@ function! MyKeymaps()
   echo ",fau: FilesAll up-one-level"
   echo ",fU: FilesTextOnly up-two-levels"
   echo ",faU: FilesAll up-two-levels"
-  echo ",f[count]: FilesAll -- run FilesAll in 0desktopia, 1math, etc "
+  echo ",f[count]: FilesAll -- run FilesAll in 0current, 1teach, etc "
   echo ",rr: RgTextOnly -- run Rg in cwd only on textfiles, follow symlinks"
   echo ",rg: Rg -- run Rg in cwd (default)"
   echo ",rt: RgTechDiary -- run Rg in 3comp/diary"
