@@ -878,7 +878,8 @@ noremap <leader>xd :Start! texdoc <cfile><cr>
 
 " If I'm using a personal latex class or style file, store in texmf/tex/local,
 " and wish to open in, simply put cursor under the file name and enter:
-noremap <leader>xf :$tabe /Users/preynol1/Library/texmf/tex/local/<cfile>.cls<cr>
+" noremap <leader>xf :$tabe /Users/preynol1/Library/texmf/tex/local/<cfile>.cls<cr>
+noremap <leader>xf :$tabe <cfile>.cls<cr>
 
 " Opens vimrc in new tab
 nnoremap <leader>ev :$tabe $XDG_CONFIG_HOME/vim/vimrc<cr>
