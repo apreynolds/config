@@ -1,3 +1,5 @@
 [user]
 	name = Patrick Reynolds
 	email = reynolds.ap@gmail.com
+[init]
+	defaultBranch = main
