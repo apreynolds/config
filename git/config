@@ -3,3 +3,7 @@
 	email = reynolds.ap@gmail.com
 [init]
 	defaultBranch = main
+[push]
+	recurseSubmodules = on-demand
+[submodule]
+	recurse = true
