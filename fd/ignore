@@ -1,27 +1,6 @@
-#https://git-scm.com/docs/gitignore
+# https://git-scm.com/docs/gitignore
 
 Applications
 Library/*
 !Library/texmf
 Pictures/
-DO-I-NEED-THESE/
-
-#*.pdf
-#*.PDF
-#*.jpg
-#*.JPG
-#*.jpeg
-#*.JPEG
-#*.png
-#*.PNG
-#*.xlsx
-#*.gsheet
-#*.gdoc
-#*.doc
-#*.docx
-#*.DOC
-#*.DOCX
-#*.wav
-#*.mp3
-#*.mp4
-#*.mw

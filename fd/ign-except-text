@@ -25,6 +25,7 @@
 #Ignore everything in the following:
 Applications/*
 Pictures/
+zz-archive/
 
 #Start by ignoring everything in Library:
 Library/*
