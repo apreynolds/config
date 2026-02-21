@@ -37,7 +37,7 @@ desc = "Cycle through mux previewers"
 # {{{ CUSTOM: ZOXIDE, Clop, fzf
 #─────────────────────────── 
 [[mgr.prepend_keymap]]
-on = [ "z", "o" ]
+on = [ "z", "z" ]
 run = "plugin zoxide"
 desc = "Jump to a directory via zoxide"
 
